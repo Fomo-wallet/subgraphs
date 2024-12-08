@@ -1,0 +1,50 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: BettingGame
+    network: polygon-amoy
+    source:
+      address: "0x960cD9d4041a68a2269EC8b1618523b5010D6d37"
+      abi: BettingGame
+      startBlock: 15350806
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - ApprovalForAll
+        - BetActivated
+        - BetCancelled
+        - BetClosed
+        - BetCreated
+        - BetPlaced
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: BettingGame
+          file: ./abis/BettingGame.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: BetActivated(uint256,string)
+          handler: handleBetActivated
+        - event: BetCancelled(uint256,address)
+          handler: handleBetCancelled
+        - event: BetClosed(uint256,address,string,string,uint256)
+          handler: handleBetClosed
+        - event: BetCreated(uint256,uint256,string,address,uint256,string,string)
+          handler: handleBetCreated
+        - event: BetPlaced(uint256,address,string,string,uint256)
+          handler: handleBetPlaced
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./src/betting-game.ts

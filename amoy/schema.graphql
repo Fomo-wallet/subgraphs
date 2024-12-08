@@ -1,0 +1,94 @@
+type Approval @entity(immutable: true) {
+  id: Bytes!
+  owner: Bytes! # address
+  approved: Bytes! # address
+  tokenId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ApprovalForAll @entity(immutable: true) {
+  id: Bytes!
+  owner: Bytes! # address
+  operator: Bytes! # address
+  approved: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type BetActivated @entity(immutable: true) {
+  id: Bytes!
+  betId: BigInt! # uint256
+  tokenURI: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type BetCancelled @entity(immutable: true) {
+  id: Bytes!
+  betId: BigInt! # uint256
+  host: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type BetClosed @entity(immutable: true) {
+  id: Bytes!
+  betId: BigInt! # uint256
+  winner: Bytes! # address
+  winnerTwitter: String! # string
+  winnerEmail: String! # string
+  actualAmount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type BetCreated @entity(immutable: true) {
+  id: Bytes!
+  betId: BigInt! # uint256
+  amount: BigInt! # uint256
+  hostTwitter: String! # string
+  host: Bytes! # address
+  endTimeStamp: BigInt! # uint256
+  privateKey: String! # string
+  hostEmail: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type BetPlaced @entity(immutable: true) {
+  id: Bytes!
+  betId: BigInt! # uint256
+  bettor: Bytes! # address
+  bettorTwitter: String! # string
+  bettorEmail: String! # string
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type OwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Transfer @entity(immutable: true) {
+  id: Bytes!
+  from: Bytes! # address
+  to: Bytes! # address
+  tokenId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
